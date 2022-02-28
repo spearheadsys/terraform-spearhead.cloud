@@ -1,0 +1,8 @@
+*.retry
+.vscode
+*~
+*pyc
+.DS_Store
+**/*.terraform.*
+**/*.tfstate*
+plan.txt

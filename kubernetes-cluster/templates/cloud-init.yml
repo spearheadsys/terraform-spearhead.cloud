@@ -1,0 +1,12 @@
+#cloud-config
+package_update: true
+package_upgrade: true
+swap:
+bootcmd:
+  - swapoff -a
+  - growpart /dev/vda 3
+  - pvresize /dev/vda3
+  - lvcreate ubuntu-vg -n longhorn-lv -L 40G
+  - mkfs -t ext4 /dev/ubuntu-vg/longhorn-lv
+mounts:
+  - [ /dev/ubuntu-vg/longhorn-lv, /var/lib/longhorn, ext4, defaults, 0, 0 ]
